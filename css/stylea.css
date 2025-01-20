@@ -1,0 +1,176 @@
+/* General Reset */
+header {
+    background-color: #fff;
+    border-bottom: 1px dotted #ddd;
+    padding: 20px 30px;
+  }
+  
+  /* Navigation container */
+  nav {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: space-between;
+    align-items: center; /* Align content vertically */
+    padding: 10px;
+    gap: 10px;
+    background-color: #fff;
+  }
+  
+  /* Left navigation links */
+  .nav-left {
+    display: none; /* Hide links by default (for mobile view) */
+    flex-direction: column; /* Stack links vertically for mobile view */
+    gap: 10px; /* Add space between links */
+  }
+  
+  .nav-left a {
+    text-decoration: none;
+    color: #000;
+    border: 1px dotted #000;
+    padding: 11px 12px;
+    font-size: 18px;
+    text-align: left;
+  }
+  
+  .nav-left a:hover {
+    color: #555;
+  }
+  
+  /* Right side information */
+  .nav-right {
+    display: none; /* Hidden by default (for mobile view) */
+    text-align: right;
+    flex-direction: column; /* Align vertically */
+  }
+  
+  .nav-right .name {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  
+  .nav-right .pronunciation {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0;
+  }
+  
+  /* Hamburger menu */
+  .menu-toggle {
+    display: block; /* Show hamburger icon by default */
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .menu-toggle {
+  display: block;
+  background: none;
+  border: 1px solid #888; /* Neutral border color visible on both modes */
+  color: #000; /* Default text color for light mode */
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px; /* Optional: adds some style */
+  background-color: #f0f0f0; /* Light background for better contrast */
+  }
+  
+  .menu-toggle:hover {
+  background-color: #ddd; /* Slightly darker hover effect */
+  }
+  
+  /* Dark Mode */
+  @media (prefers-color-scheme: dark) {
+  .menu-toggle {
+    color: #fff; /* Text color visible on dark mode */
+    border: 1px solid #ccc; /* Lighter border for dark mode */
+    background-color: #333; /* Darker background for contrast */
+  }
+  
+  .menu-toggle:hover {
+    background-color: #444; /* Slightly darker hover effect for dark mode */
+  }
+  }
+  
+  /* Show navigation when menu is toggled */
+  nav.open .nav-left, nav.open .nav-right {
+    display: flex; /* Display links when menu is open */
+  }
+  
+  /* Styles for large screens */
+  @media (min-width: 768px) {
+    .nav-left {
+        display: flex; /* Show navigation links */
+        flex-direction: row; /* Align links horizontally */
+        gap: 15px;
+    }
+  
+    .nav-right {
+        display: flex; /* Show navigation links */
+        text-align: right;
+    }
+    
+    .nav-right .name {
+        display: flex; /* Show navigation links */
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin: 0;
+    }
+    
+    .nav-right .pronunciation {
+        display: flex; /* Show navigation links */
+        font-style: italic;
+        font-size: 0.9rem;
+        color: #555;
+        margin: 0;
+    }
+  
+    .menu-toggle {
+        display: none; /* Hide hamburger button */
+    }
+  }
+  
+  body {
+    margin: 0;
+    color: #000;
+    background-color: #fff;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+
+  
+  .about-container {
+    padding: 20px;
+    text-align: left;
+    align-items: center;
+}
+
+p {
+    font-size: 4.5rem;
+    font-weight: bold;
+    margin: 1em 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.highlight-blue {
+    background-color: #cce4ff;
+    color: #0044cc;
+    padding: 0 0.2em;
+}
+
+.highlight-pink {
+    background-color: #ffccee;
+    color: #d1008f;
+    padding: 0 0.2em;
+}
+
+.highlight-orange {
+    background-color: #ffd699;
+    color: #ff6600;
+    padding: 0 0.2em;
+}
+
