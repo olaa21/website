@@ -1,12 +1,12 @@
 // Configuration for nodes and their hover images
 const nodes = [
-    { id: "Creative Programming", size: 150, color: "#FF6F61", images: ["images/cultpersp.jpg", "images/cultpersp2.jpg",  "images/cutper2.mov",  "images/cultper3.mov",  "images/cultper4.jpg"], x: 200, y: 200 },
+    { id: "Creative Programming", size: 150, color: "#FF6F61", images: ["images/cultpersp.jpg", "images/cultpersp2.jpg",  "images/cultper2.mp4",  "images/cultper3.mp4",  "images/cultper4.jpg"], x: 200, y: 200 },
     { id: "Product Design", size: 75, color: "#FFD700", images: ["images/lmd.jpg", "images/dextknife1.jpg", "images/dextknife2.jpg", "images/dextknife3.jpg", "images/textted.jpg", "images/teddy1.jpg", "images/teddy2.jpg", "images/teddy3.jpg"], x: 300, y: 200 },
     { id: "Data Analysis", size: 90, color: "#1E90FF", images: ["images/data1.jpg", "images/unions1.jpg", "images/unions2.jpg", "images/union3.jpg", "images/union4.jpg"], x: 400, y: 300 },
     { id: "Data Sonification", size: 90, color: "#FF4500", images: ["images/Sankofa1.jpg"], x: 600, y: 400 },
     { id: "Web Design", size: 100, color: "#800080", images: ["images/Sankofa1.jpg"], x: 700, y: 400 },
     //{ id: "Research", size: 120, color: "#FFA07A", images: ["images/curlconnresearch.jpg"], x: 800, y: 500 },
-    { id: "User Experience", size: 90, color: "#FFA07A", images: ["images/interactdesign.jpg", "images/interact.mov","images/curlconn.jpg"], x: 800, y: 500 },
+    { id: "User Experience", size: 90, color: "#FFA07A", images: ["images/interactdesign.jpg", "images/interact.mp4","images/curlconn.jpg"], x: 800, y: 500 },
 ];
 
 // Get container dimensions and header height
@@ -156,31 +156,50 @@ function openLightboxForGroup(imageGroup) {
     function renderImage() {
         // Remove any previous content
         lightbox.selectAll(".lightbox-content").remove();
-
+    
         // Add lightbox content container
         const content = lightbox.append("div").attr("class", "lightbox-content");
-
-        // Add image
-        content.append("img")
-            .attr("src", imageGroup.images[currentIndex])
-            .style("width", "100%")
-            .style("height", "auto")
-            .style("border-radius", "5px")
-            .style("display", "block")
-            .style("margin", "0 auto");
-
+    
+        // Determine if the current media is an image or a video
+        const currentMedia = imageGroup.images[currentIndex];
+        const isVideo = currentMedia.endsWith('.mp4'); // Adjust logic if you have other video formats
+    
+        if (isVideo) {
+            // Add video
+            content.append("video")
+                .attr("controls", true)
+                .style("max-width", "100%")
+                .style("max-height", "80vh") // Ensure it fits within the lightbox
+                .style("display", "block")
+                .style("margin", "0 auto")
+                .append("source")
+                .attr("src", currentMedia)
+                .attr("type", "video/mp4"); // Ensure to match the correct type
+        } else {
+            // Add image
+            content.append("img")
+                .attr("src", currentMedia)
+                .style("max-width", "100%")
+                .style("max-height", "80vh")
+                .style("width", "auto")
+                .style("height", "auto")
+                .style("border-radius", "5px")
+                .style("display", "block")
+                .style("margin", "0 auto");
+        }
+    
         // Add description
         content.append("p")
             .text(`Image ${currentIndex + 1} of ${imageGroup.images.length}`)
             .style("text-align", "center")
             .style("margin-top", "10px");
-
+    
         // Add navigation buttons container
         const buttonContainer = content.append("div")
             .style("display", "flex")
             .style("justify-content", "space-between")
             .style("margin-top", "15px");
-
+    
         // Previous button
         buttonContainer.append("button")
             .text("Previous")
@@ -194,7 +213,7 @@ function openLightboxForGroup(imageGroup) {
                 currentIndex = (currentIndex - 1 + imageGroup.images.length) % imageGroup.images.length;
                 renderImage();
             });
-
+    
         // Close button
         buttonContainer.append("button")
             .text("Close")
@@ -207,7 +226,7 @@ function openLightboxForGroup(imageGroup) {
             .on("click", () => {
                 d3.select(".lightbox").remove();
             });
-
+    
         // Next button
         buttonContainer.append("button")
             .text("Next")
@@ -222,6 +241,6 @@ function openLightboxForGroup(imageGroup) {
                 renderImage();
             });
     }
-
+    
     renderImage();
 }
